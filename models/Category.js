@@ -16,9 +16,8 @@ const categorySchema = new mongoose.Schema({
         unique: true
     },
     timestamps: {
-        // type: Date,
-        // default: Date.now
-        timestamps: true
+        type: Date,
+        default: Date.now
     }
 });
 
