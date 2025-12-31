@@ -43,8 +43,11 @@ const updateCategoryPage = async (req,res,next) => {
     }
     res.render('admin/categories/update', { category, role: req.role, errors: 0 })
   } catch (error) {
-    // res.status(400).send(error);
-    next(error)
+      console.error(error);
+      return res.status(500).render('admin/500', {
+        message: error.message,
+        role: req.role
+      });
   }
 }
 
@@ -72,8 +75,11 @@ const updateCategory = async (req,res,next) => {
     await category.save();
     res.redirect('/admin/category');
   } catch (error) {
-    // res.status(400).send(error);
-    next(error)
+      console.error(error);
+      return res.status(500).render('admin/500', {
+        message: error.message,
+        role: req.role
+      });
   }
  }
 
@@ -93,10 +99,14 @@ const deleteCategory = async (req,res,next) => {
     await category.deleteOne();
     res.json({ success: true });
   } catch (error) {
-    // res.status(400).send(error);
-    next(error)
+      console.error(error);
+      return res.status(500).render('admin/500', {
+        message: error.message,
+        role: req.role
+      });
   }
- }
+
+}
 
 module.exports = {
   allCategory,
