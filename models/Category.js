@@ -26,18 +26,18 @@ const categorySchema = new mongoose.Schema({
 //     next();
 // });
 
-// categorySchema.pre('validate', function () {
-//     if (this.name) {
-//         this.slug = slugify(this.name, { lower: true });
-//     }
-// });
-
-categorySchema.pre('validate', function (next) {
+categorySchema.pre('validate', function () {
     if (this.name) {
         this.slug = slugify(this.name, { lower: true });
     }
-    next();
 });
+
+// categorySchema.pre('validate', function (next) {
+//     if (this.name) {
+//         this.slug = slugify(this.name, { lower: true });
+//     }
+//     next();
+// });
 
 
 module.exports = mongoose.model('Category', categorySchema);
