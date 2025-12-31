@@ -12,13 +12,13 @@ const addCategoryPage = async (req,res) => {
  }
 
 const addCategory = async (req,res,next) => { 
-  // const errors = validationResult(req); 
-  //    if (!errors.isEmpty()) {
-  //     return res.render('admin/categories/create',{
-  //       role: req.role,
-  //       errors: errors.array()
-  //     })
-  //    }
+  const errors = validationResult(req); 
+     if (!errors.isEmpty()) {
+      return res.render('admin/categories/create',{
+        role: req.role,
+        errors: errors.array()
+      })
+     }
 
   try {
     await categoryModel.create(req.body)
