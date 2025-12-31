@@ -24,7 +24,13 @@ const addCategory = async (req,res) => {
     await categoryModel.create(req.body)
     res.redirect('/admin/category');
   } catch (error) {
-    res.status(500).send(error);
+    //res.status(500).send(error);
+    console.error(error);
+    res.render('admin/categories/create', {
+      role: req.role,
+      errors: [{ msg: error.message }]
+    });
+
   }
 }
 
