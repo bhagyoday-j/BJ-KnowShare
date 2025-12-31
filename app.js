@@ -40,7 +40,16 @@ app.use(
 app.set('view engine', 'ejs');
 
 //Database Connection
-mongoose.connect(process.env.MONGODB_URI)
+//mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
+  tls: true,
+  tlsInsecure: false,
+  serverSelectionTimeoutMS: 30000
+})
+.then(() => console.log("MongoDB connected"))
+.catch(err => console.error("MongoDB error:", err));
+
+
 
 // Routes
 app.use('/admin',(req, res, next) =>{
