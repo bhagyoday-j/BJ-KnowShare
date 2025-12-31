@@ -12,13 +12,13 @@ const addCategoryPage = async (req,res) => {
  }
 
 const addCategory = async (req,res,next) => { 
-  const errors = validationResult(req); 
-     if (!errors.isEmpty()) {
-      return res.render('admin/categories/create',{
-        role: req.role,
-        errors: errors.array()
-      })
-    }
+  // const errors = validationResult(req); 
+  //    if (!errors.isEmpty()) {
+  //     return res.render('admin/categories/create',{
+  //       role: req.role,
+  //       errors: errors.array()
+  //     })
+  //    }
 
   try {
     await categoryModel.create(req.body)
@@ -43,11 +43,8 @@ const updateCategoryPage = async (req,res,next) => {
     }
     res.render('admin/categories/update', { category, role: req.role, errors: 0 })
   } catch (error) {
-      console.error(error);
-      return res.status(500).render('admin/500', {
-        message: error.message,
-        role: req.role
-      });
+    // res.status(400).send(error);
+    next(error)
   }
 }
 
@@ -75,11 +72,8 @@ const updateCategory = async (req,res,next) => {
     await category.save();
     res.redirect('/admin/category');
   } catch (error) {
-      console.error(error);
-      return res.status(500).render('admin/500', {
-        message: error.message,
-        role: req.role
-      });
+    // res.status(400).send(error);
+    next(error)
   }
  }
 
@@ -99,14 +93,10 @@ const deleteCategory = async (req,res,next) => {
     await category.deleteOne();
     res.json({ success: true });
   } catch (error) {
-      console.error(error);
-      return res.status(500).render('admin/500', {
-        message: error.message,
-        role: req.role
-      });
+    // res.status(400).send(error);
+    next(error)
   }
-
-}
+ }
 
 module.exports = {
   allCategory,
