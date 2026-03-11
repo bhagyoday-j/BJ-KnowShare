@@ -51,22 +51,6 @@ Try the application here:
 
 ---
 
-## Image Handling
-
-All blog images are uploaded and securely stored using **Cloudinary**.
-
-Before running the project, ensure your Cloudinary credentials are configured in the `.env` file:
-
-```env
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-```
-
-This allows the platform to upload, store, and deliver images efficiently.
-
----
-
 ## Project Goals
 
 The goal of this project is to build a blogging platform that demonstrates:
